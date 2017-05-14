@@ -3,7 +3,6 @@ from subprocess import call
 import os
 import cmath
 
-
 def create_bands_from_file(filename):
     with open(filename, 'r') as f:
         lines = f.readlines()
@@ -93,7 +92,6 @@ def create_bands_from_file(filename):
                 i += 1
             bands = [bands1, bands2]
         return bands
-
 
 def extract_ks_from_file(filename):
     with open(filename, 'r') as f:

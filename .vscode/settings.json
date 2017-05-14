@@ -84,8 +84,12 @@
         "string_view": "cpp",
         "vector": "cpp",
         "scoped_allocator": "cpp",
-        "shared_mutex": "cpp"
+        "shared_mutex": "cpp",
+        "*.expression": "cpp"
     },
     "python.unitTest.pyTestArgs": [],
-    "python.unitTest.pyTestEnabled": true
+    "python.unitTest.pyTestEnabled": false,
+    "python.unitTest.promptToConfigure": false,
+    "python.unitTest.unittestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false
 }

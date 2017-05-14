@@ -7,4 +7,10 @@
     "args": [ "/Users/ponet/tools/anaconda3/envs/PhD/lib/python3.5/site-packages/DFTools/setup.py","build_ext", "-i"],
     "showOutput": "always",
     "problemMatcher":"$msCompile"
+    // "version": "0.1.0",
+    // "command": "clang",
+    // "isShellCommand": true,
+    // "args": [ "/Users/ponet/tools/anaconda3/envs/PhD/lib/python3.5/site-packages/DFTools/test.cpp","-I/Users/ponet/Documents/C++/Libraries/Qt5.7.1/5.7/clang_64/include", "-L/Users/ponet/Documents/C++/Libraries/Qt5.7.1/5.7/clang_64/lib","-lQt5Core","-fPIC"],
+    // "showOutput": "always",
+    // "problemMatcher":"$msCompile"
 }

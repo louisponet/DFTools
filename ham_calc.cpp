@@ -22,7 +22,6 @@ Eigen::Matrix< Cf, Eigen::Dynamic, Eigen::Dynamic > hami_from_k(std::vector< std
         else
             break;
     }
-
     Eigen::Matrix< Cf, Eigen::Dynamic, Eigen::Dynamic > out = Eigen::Matrix< Cf, Eigen::Dynamic, Eigen::Dynamic >::Zero(dim, dim);
     for (int i = 0; i < (int)hami_raw.size(); i++) {
         std::tuple< int, int, int, int, int, float, float > h = hami_raw[i];

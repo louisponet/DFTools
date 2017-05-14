@@ -538,7 +538,7 @@ Cd calculate_angular_momentum(array_Cd mesh1,array_Cd mesh2, array_d grid,array_
     double dadz = W(0,2);
     double dbdz = W(1,2);
     double dcdz = W(2,2);
-    
+
     Cd ddax;
     Cd ddbx;
     Cd ddcx;

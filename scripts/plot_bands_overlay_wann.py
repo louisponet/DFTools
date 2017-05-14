@@ -1,11 +1,12 @@
-import plotter
+#!/Users/ponet/tools/anaconda3/envs/PhD/bin/python
+import DFTools.Plotter as Plotter
 import numpy as np
 
 if __name__ == "__main__":
     import sys
 
     sysarg = sys.argv
-    plot = plotter.Plotter()
+    plot = Plotter()
     erange = []
     tmp = sysarg[2].split(',')
     erange.append(float(tmp[0]))

@@ -1,3 +1,4 @@
+#!/Users/ponet/tools/anaconda3/envs/PhD/bin/python
 import DFTools.plotter as plotter
 
 if __name__ == "__main__":

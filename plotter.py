@@ -56,7 +56,6 @@ class Axes(plt.Axes):
         self.data_sets = []
         self.fig = fig
         self.energy_zero = 0
-        self.energy_range = None
         self.x_range = None
         self.x_ticks = None
         self.x_tick_labels = None
@@ -88,6 +87,9 @@ class Axes(plt.Axes):
                     normalize_data(self.data_sets[data_index])
             else:
                 print("Error: Data index exceeds amount of plotted data sets.")
+ 
+        self.energy_range[0]-=self.energy_zero
+        self.energy_range[1]-=self.energy_zero         
         self.display()
 
     def display(self):
@@ -164,12 +166,13 @@ class Axes(plt.Axes):
                 data_set.handle = self.scatter(data_set.data[:, 0], data_set.data[:, 1], **kwargs)
 
         if self.energy_range is not None:
-            self.set_ylim([self.energy_range[0] - self.energy_zero,
-                           self.energy_range[1] - self.energy_zero])
+            self.set_ylim([self.energy_range[0],
+                           self.energy_range[1]])
         if self.x_range is not None:
             self.set_xlim(self.x_range)
         self.set_title(self.plot_title)
         self.config_axis()
+        self.fig.show()
 
     def add_data_set(self, data_set):
         """Adds data_set and normalizes it if there was a zero_energy set beforehand."""
@@ -425,7 +428,6 @@ class DataStorage:
         self.grid = wrap.generate_grid(
             origin, a_span_array, b_span_array, c_span_array)
         self.hami_raw = fileprc.read_wan_hami(hami_file[0])
-
         self.dir = wan_dir
 
     def load_kpoints(self, k_file=None, k_points=None):
@@ -869,7 +871,7 @@ class Plotter:
             self.axes[-1].add_data_set(d_set)
             self.axes[-1].display()
 
-    def plot_bands(self, filename, axes_index=(1, 1), energy_range=None, label=None, **kwargs):
+    def plot_bands(self, filename, axes_index=(1, 1), energy_range=[-15,15], label=None, **kwargs):
         bands_array = fileprc.create_bands_from_file(filename)
         ax = self.find_axes(axes_index)
         if ax == 0:
@@ -1000,8 +1002,11 @@ class Plotter:
             self.axes[-1].display()
 
     def plot_k_pdos(self, filename, column, energy_range=None, label=None, axes_index=(1, 1), **kwargs):
+        import time
+        t = time.time()
         data_set = DataSet("KPDOS", fileprc.read_k_pdos(
             filename, column + 2), **kwargs)
+        print("time was:{}".format(time.time()-t))
         if label is None:
             data_set.label = "PDOS(Column {})".format(column)
         else:
@@ -1050,7 +1055,6 @@ class Plotter:
                 self.data_storage.load_kpoints(k_file, k_points)
             self.data_storage.calculate_dipoles_eigenvalues(
                 lambda_socs, centres)
-
         indices = np.arange(0, len(self.data_storage.dipoles))
         dipoles = []
         for dipole in self.data_storage.dipoles:

@@ -148,7 +148,8 @@ vec_Cd calculate_intercell_dipole(array_Cd mesh1, array_Cd mesh2, array_d grid, 
                         dx += std::conj(meshPtr1[i * dim1 * dim2 + i1 * dim2 + i2]) * meshPtr2[i * dim1 * dim2 + i1 * dim2 + i2 + dim2 / 3 - 2] * gridPtr[i * dim1 * dim2 * dim3 + i1 * dim2 * dim3 + i2 * dim3];
                         dy += std::conj(meshPtr1[i * dim1 * dim2 + i1 * dim2 + i2]) * meshPtr2[i * dim1 * dim2 + i1 * dim2 + i2 + dim2 / 3 - 2] * gridPtr[i * dim1 * dim2 * dim3 + i1 * dim2 * dim3 + i2 * dim3 + 1];
                         dz += std::conj(meshPtr1[i * dim1 * dim2 + i1 * dim2 + i2]) * meshPtr2[i * dim1 * dim2 + i1 * dim2 + i2 + dim2 / 3 - 2] * gridPtr[i * dim1 * dim2 * dim3 + i1 * dim2 * dim3 + i2 * dim3 + 2];
-                        n += std::sqrt(std::norm(meshPtr1[i * dim1 * dim2 + i1 * dim2 + i2]) * std::norm(meshPtr2[i * dim1 * dim2 + i1 * dim2 + i2 + dim2 / 3 - 2]));
+                        n1 += std::norm(meshPtr1[i * dim1 * dim2 + i1 * dim2 + i2]);
+                        n2 += std::norm(meshPtr2[i * dim1 * dim2 + i1 * dim2 + i2 + dim2 / 3 - 2]);
                     }
                 }
             }
@@ -709,12 +710,10 @@ std::tuple< std::vector< vec_Cd >, Eigen::VectorXcd > calculate_eigen_dipoles(Ei
 
     //decompose the hamiltonian
     Eigen::ComplexEigenSolver< Eigen::MatrixXcd > eigensolver(hami);
-    //    eigensolver.compute(hami,Eigen::ComputeEigenvectors);
     Eigen::MatrixXcd eigenvectors = eigensolver.eigenvectors();
     Ul dimEig = eigenvectors.cols();
     //create outEig for also returning the eigenvalues of the hamiltonian
     Eigen::VectorXcd outEig = eigensolver.eigenvalues();
-
     //initialize list of dipoles so they stay in order during parallel processing
     vec_Cd tmp({Cd(0, 0), Cd(0, 0), Cd(0, 0)});
     std::vector< vec_Cd > outDipoles(dimEig, tmp);
@@ -780,7 +779,7 @@ std::tuple< std::vector< vec_Cd >, Eigen::VectorXcd > calculate_eigen_dipoles(Ei
                 //                dip_y += std::conj(c_orb1)*c_orb2*(factors[16]*(std::conj(dipoles[orb2*dimEig*Direction::END+orb1*Direction::END+17][1])+dipoles[orb1*dimEig*Direction::END+orb2*Direction::END+16][1])+factors[17]*(dipoles[orb1*dimEig*Direction::END+orb2*Direction::END+17][1]+std::conj(dipoles[orb2*dimEig*Direction::END+orb1*Direction::END+16][1])));
                 //                dip_y += std::conj(c_orb1)*c_orb2*(factors[18]*(std::conj(dipoles[orb2*dimEig*Direction::END+orb1*Direction::END+19][1])+dipoles[orb1*dimEig*Direction::END+orb2*Direction::END+18][1])+factors[19]*(dipoles[orb1*dimEig*Direction::END+orb2*Direction::END+19][1]+std::conj(dipoles[orb2*dimEig*Direction::END+orb1*Direction::END+18][1])));
                 //                dip_y += std::conj(c_orb1)*c_orb2*(factors[20]*(std::conj(dipoles[orb2*dimEig*Direction::END+orb1*Direction::END+21][1])+dipoles[orb1*dimEig*Direction::END+orb2*Direction::END+20][1])+factors[21]*(dipoles[orb1*dimEig*Direction::END+orb2*Direction::END+21][1]+std::conj(dipoles[orb2*dimEig*Direction::END+orb1*Direction::END+20][1])));
-                //
+                // //
                 dip_z += std::conj(c_orb1) * c_orb2 * (factors[0] * (std::conj(dipoles[orb2 * dimEig * Direction::END + orb1 * Direction::END + 1][2]) + dipoles[orb1 * dimEig * Direction::END + orb2 * Direction::END][2]) + factors[1] * (dipoles[orb1 * dimEig * Direction::END + orb2 * Direction::END + 1][2] + std::conj(dipoles[orb2 * dimEig * Direction::END + orb1 * Direction::END][2])));
                 dip_z += std::conj(c_orb1) * c_orb2 * (factors[2] * (std::conj(dipoles[orb2 * dimEig * Direction::END + orb1 * Direction::END + 3][2]) + dipoles[orb1 * dimEig * Direction::END + orb2 * Direction::END + 2][2]) + factors[3] * (dipoles[orb1 * dimEig * Direction::END + orb2 * Direction::END + 3][2] + std::conj(dipoles[orb2 * dimEig * Direction::END + orb1 * Direction::END + 2][2])));
                 dip_z += std::conj(c_orb1) * c_orb2 * (factors[4] * (std::conj(dipoles[orb2 * dimEig * Direction::END + orb1 * Direction::END + 5][2]) + dipoles[orb1 * dimEig * Direction::END + orb2 * Direction::END + 4][2]) + factors[5] * (dipoles[orb1 * dimEig * Direction::END + orb2 * Direction::END + 5][2] + std::conj(dipoles[orb2 * dimEig * Direction::END + orb1 * Direction::END + 4][2])));

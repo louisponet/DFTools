@@ -1,9 +1,10 @@
+#%%
 import DFTools
 
 # This tutorial will give example calculations for the Wannier portion of the plotting tool.
 # This is intended as an interactive tutorial, but one can put a plot.save at any point to do it non-interactive.
 plot = DFTools.Plotter(w=15)
-
+#%%
 # First let us check how well the interpolated Wannier band_structure looks compared to the original one.
 plot.plot_bands("../tests/colin/GeTe_bands.out", energy_range=[0, 15], c='b', linewidth=2)
 # Now we overlay the Wannier interpolation --> read the tight-binding Hamiltonian from Wannier interpolation output, compute the band structure and overlay
@@ -12,7 +13,7 @@ plot.set_title("Collinear Bandstructure", size=20)
 plot.set_data_label("DFT", 0, fontsize=15)
 plot.set_data_label("Wannier interpolation", 2, fontsize=15)
 # The first input is the tight binding Hamiltonian that we got out of the Wannier90 program.
-
+#%%
 # We see that the Wannier interpolation worked quite well. Now let's see what happens with SOC.
 plot.plot_bands("../tests/fullrel/GeTe_bands.out", energy_range=[0, 15], axes_index=(1, 2), c='b', linewidth=2)
 plot.set_title("Noncollinear Bandstructure", axes_index=(1, 2), size=20)
