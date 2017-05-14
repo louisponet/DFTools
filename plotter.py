@@ -1193,7 +1193,7 @@ class Plotter:
                     print("Error: could not find Fermi level in specified file!")
                     return
         elif energy is not None:
-            ax = self.find_axes(axes_index)
+            ax = self.find_axes(axes_index) 
             if ax == 0:
                 print("Error: There is no plot with that index.")
                 return
