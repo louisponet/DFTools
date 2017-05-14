@@ -20,7 +20,7 @@ std::vector< std::tuple< Eigen::VectorXd, std::vector< Eigen::VectorXcd > > > ge
     for (Ul i = 0; i < length; i++) {
         Eigen::MatrixXcd hamiltonian = hami_from_k(hami_raw, kxs[i], kys[i], kzs[i]).cast< Cd >();
 
-        Eigen::ComplexEigenSolver< Eigen::MatrixXcd > eigensolver(hamiltonian, Eigen::ComputeEigenvectors);
+        Eigen::ComplexEigenSolver< Eigen::MatrixXcd >  eigensolver(hamiltonian, Eigen::ComputeEigenvectors);
         eigensolver.compute(hamiltonian);
         tmp_eig[i] = eigensolver.eigenvalues();
         tmp_vec[i] = eigensolver.eigenvectors();
