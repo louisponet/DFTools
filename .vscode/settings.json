@@ -85,7 +85,8 @@
         "vector": "cpp",
         "scoped_allocator": "cpp",
         "shared_mutex": "cpp",
-        "*.expression": "cpp"
+        "*.expression": "cpp",
+        "rope": "cpp"
     },
     "python.unitTest.pyTestArgs": [],
     "python.unitTest.pyTestEnabled": false,
