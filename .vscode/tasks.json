@@ -2,9 +2,9 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "0.1.0",
-    "command": "/Users/ponet/tools/anaconda3/envs/PhD/bin/python3.5",
+    "command": "/usr/bin/python",
     "isShellCommand": true,
-    "args": [ "/Users/ponet/tools/anaconda3/envs/PhD/lib/python3.5/site-packages/DFTools/setup.py","build_ext", "-i"],
+    "args": [ "/usr/lib/python3.6/site-packages/DFTools/setup.py","build_ext", "-i"],
     "showOutput": "always",
     "problemMatcher":"$msCompile"
     // "version": "0.1.0",

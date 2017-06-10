@@ -20,20 +20,20 @@ def parallelCCompile(self, sources, output_dir=None, macros=None, include_dirs=N
 import distutils.ccompiler
 distutils.ccompiler.CCompiler.compile=parallelCCompile
 
-os.chdir('/Users/ponet/tools/anaconda3/envs/PhD/lib/python3.5/site-packages/DFTools/')
-os.environ["CC"] = "ccache /usr/local/bin/gcc-6"
+os.chdir('/usr/lib/python3.6/site-packages/DFTools/')
+os.environ["CC"] = "/usr/bin/gcc"
 #os.environ["CC"] = "ccache clang"
 #os.environ["CXX"] = "ccache clang++"
-os.environ["CXX"] = "ccache /usr/local/bin/gcc-6"
+os.environ["CXX"] = "/usr/bin/gcc"
 #cpp_args = ['-std=c++14','-stdlib=libc++', '-mmacosx-version-min=10.11']
-cpp_args = ['-std=c++14','-fopenmp', '-mmacosx-version-min=10.11']
+cpp_args = ['-std=c++14','-fopenmp']
 link_args=['-lgomp']
 #link_args=[]
 ext_modules = [
     Extension(
     'wrap',
         ['calc.cpp','sup_calc.cpp','dip_calc.cpp','ham_calc.cpp', 'wrap.cpp'],
-        include_dirs=['pybind11/include','/Users/ponet/Documents/C++/Libraries/eigen','/usr/local/include','/usr/local/lib'],
+        include_dirs=['pybind11/include','eigen','/usr/include','/usr/lib'],
         library_dirs=['/usr/local/lib'],
         runtime_library_dirs=['/usr/local/lib'],
         libraries=['stdc++'],

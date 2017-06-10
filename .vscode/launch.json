@@ -6,7 +6,7 @@
             "type": "python",
             "request": "launch",
 
-            "pythonPath": "/Users/ponet/tools/anaconda3/envs/PhD/bin/python",
+            "pythonPath": "/usr/bin/python",
             "program": "${workspaceRoot}/examples/example_kres_pdos.py",
             "debugOptions": [
                 "WaitOnAbnormalExit",

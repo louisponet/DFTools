@@ -11,7 +11,14 @@
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": false,
-                "databaseFilename": ""
+                "databaseFilename": "",
+                "path": [
+                    "/usr/include",
+                    "/usr/local/include",
+                    "/usr/lib",
+                    "/Users/ponet/tools/anaconda3/envs/PhD/lib/python3.5/site-packages/DFTools/eigen",
+                    "/Users/ponet/tools/anaconda3/envs/PhD/lib/python3.5/site-packages/DFTools/pybind11/include"
+                ]
             }
         },
         {
@@ -22,7 +29,11 @@
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
-                "databaseFilename": ""
+                "databaseFilename": "",
+                "path": [
+                    "/usr/include",
+                    "/usr/local/include"
+                ]
             }
         },
         {
@@ -32,7 +43,10 @@
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
-                "databaseFilename": ""
+                "databaseFilename": "",
+                "path": [
+                    "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*"
+                ]
             }
         }
     ]
